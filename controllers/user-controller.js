@@ -10,6 +10,21 @@ getAllUser(req, res){
         console.log(err); 
         res.sendStatus(400); 
     });
+},
+
+getUserById({ params }, res ){
+    User.findOne({_id : params.id })
+    .then(dbUserData => res.json(dbUserData))
+    .catch(err => {
+        console.log(err);
+        res.sendStatus(400);
+      }); 
+},
+   
+createUser({ body }, res) {
+    User.create(body)
+    .then(dbUserData => res.json(dbUserData))
+    .catch(err => res.json(err));
 }
 }; 
 
