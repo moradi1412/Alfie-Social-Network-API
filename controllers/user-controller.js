@@ -2,7 +2,6 @@ const { User } = require('../Models');
 
 const userController = { 
     
-//get all the user 
 getAllUser(req, res){
     User.find({})
     .then(dbUserData => res.json(dbUserData))
@@ -39,11 +38,27 @@ updateUser ({ params, body }, res ) {
     .catch(err => res.json(err));
 },
 
-  deleteUser({ params }, res) {
+deleteUser({ params }, res) {
     User.findOneAndDelete({ _id: params.id })
       .then(dbUserData => res.json(dbUserData))
       .catch(err => res.json(err));
-  }
+}, 
+
+addFriend ({ params }, res ) {
+    User.findOneAndUpdate( 
+        {_id: params.userId},
+        { $push: { friends : params.friendId }}, 
+        { new: true}
+        )
+        .then(dbUserData => {
+            if (!dbUserData) {
+                res.status(404).json({ Message : "no user found with this ID"});
+                return;
+            }
+            res.json(dbUserData); 
+            })
+            .catch(err => res.json(err)); 
+}
 
 
 }; 
