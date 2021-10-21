@@ -25,7 +25,7 @@ addThought({ params, body }, res) {
 
 addReaction ({ params, body}, res) {
   thought.findOneAndUpdate(
-        { _id: params.userId },
+        { _id: params.thoughtId },
         { $push: { reactions: body } },
         { new: true }
     )
