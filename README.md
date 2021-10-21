@@ -22,4 +22,4 @@ This application was build in purpose to display the skills of using MongoDB.
 - Mohammad Javid Moradi 
 
 ## Video Link 
-[Video Link]()
+[Video Link](https://youtu.be/Ml4Ff65dUgg)
